@@ -29,6 +29,11 @@ public class Thread04 {
      * 3.非阻塞的获取锁
      * 尝试获取锁失败不进入阻塞则直接返回
      *
+     * 4.重入锁:线程可以获得同一把锁
+     * 公平锁:如果一个线程没有争夺到锁,就会进入等待队列,当锁释放的时候,就有机会获得锁
+     * 如果设置了公平锁,那么哪个线程等待的时间越长,获得锁的概率越大,但是这会大大的影响
+     * 性能.
+     *
      *
      */
     //ReentrantLock 类的一些介绍及其方法
@@ -77,10 +82,18 @@ class X {
     private final Lock rt1 = new ReentrantLock();
 
     int value;
-
-    public void add() {
+    public int get(){
+        //获得锁
         rt1.lock();
-
+        try{
+            return value;
+        }finally {
+            rt1.unlock();
+        }
+    }
+    public void add() {
+        //获取锁
+        rt1.lock();
         try {
             value++;
         } finally {
