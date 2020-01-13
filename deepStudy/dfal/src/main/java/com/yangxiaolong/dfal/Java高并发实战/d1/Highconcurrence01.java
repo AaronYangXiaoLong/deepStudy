@@ -8,6 +8,6 @@ public class Highconcurrence01 {
      * 
      */
     public static void main(String[] args) {
-        new HashMap<>()
+        new HashMap<>();
     }
 }

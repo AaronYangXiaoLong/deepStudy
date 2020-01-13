@@ -10,6 +10,7 @@ public class DfalApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DfalApplication.class, args);
+
     }
 
 }
